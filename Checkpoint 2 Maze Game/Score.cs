@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 
-// No namespace here, to match Program.cs and Maze.cs
-// If you prefer a namespace, use the SAME one in ALL files.
-
 public class Score
 {
     public DateTime When;
@@ -27,11 +24,9 @@ public static class ScoreService
     {
         try
         {
-            // write "yyyy-MM-dd HH:mm:ss,Steps,Seconds"
             var line = $"{s.When:yyyy-MM-dd HH:mm:ss},{s.Steps},{s.Seconds}";
             File.AppendAllLines(PathScores, new[] { line });
 
-            // keep only newest 10 lines (assessment requires "latest 10")
             var lines = File.ReadAllLines(PathScores);
             if (lines.Length > 10)
             {
@@ -41,10 +36,7 @@ public static class ScoreService
                 File.WriteAllLines(PathScores, keep);
             }
         }
-        catch
-        {
-            // ignore I/O errors for assignment simplicity
-        }
+        catch { }
     }
 
     public static List<string> ReadLatest(int count)
@@ -57,10 +49,7 @@ public static class ScoreService
             int start = Math.Max(0, all.Length - count);
             for (int i = start; i < all.Length; i++) result.Add(all[i]);
         }
-        catch
-        {
-            // ignore read errors
-        }
+        catch { }
         return result;
     }
 }
