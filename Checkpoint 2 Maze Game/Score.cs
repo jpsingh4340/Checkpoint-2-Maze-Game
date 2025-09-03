@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 
+/// <summary>
+/// A single score entry. We record both Steps and Seconds and keep the latest 10 runs.
 public class Score
 {
     public DateTime When;
